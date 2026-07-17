@@ -1,10 +1,13 @@
 #General config of the camera
 
+#Camera configuration
 CAMERA_INDEX = 0
+FRAME_WIDTH = 640
+FRAME_HEIGHT = 480
+FPS = 30
+WINDOW_NAME = "Camera Detector"
 
-FRAME_WIDTH = 0
-FRAME_HEIGHT = 0
-
-WINDOW_NAME = "CAMERA_DET"
+#Dataset config
+IMAGE_PREFIX = "capture"
 IMAGE_FORMAT = ".jpg"
-CAPURE_FOLDER = "../dataset"
+CAPTURE_FOLDER = "../datasets"
