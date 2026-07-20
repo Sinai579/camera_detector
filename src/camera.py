@@ -20,6 +20,7 @@ Created:
 from config import FRAME_HEIGHT, FRAME_WIDTH, WINDOW_NAME, FPS, CAMERA_INDEX
 import cv2
 import os
+import glob
 
 
 class Camera:
@@ -30,7 +31,7 @@ class Camera:
         self.width = FRAME_WIDTH
         self.height = FRAME_HEIGHT
         self.window_name = WINDOW_NAME
-        self.image_counter = 0  # Counter for naming captured images
+        self.image_counter = self._get_next_image_number("dataset")  # Counter for naming captured images
 
 
     def open_camera(self) -> bool:
@@ -83,6 +84,44 @@ class Camera:
             cv2.imshow(self.window_name, frame)
             #if cv2.waitKey(1) == 27:  # Press 'Esc' to exit
                 #self.close_camera()
+
+    def _get_next_image_number(self, folder):
+        """
+        Determines the next sequential image number for saving captured images in the specified folder.
+        Args:
+            folder (str): The name of the folder where images are saved.
+        Returns:
+            int: The next image number to use for naming the new image.
+        """
+        # os.makedirs(folder, exist_ok=True)
+        # existing_images = glob.glob(os.path.join(folder, "img_*.jpg"))
+        # if not existing_images:
+        #     return 0
+        # existing_numbers = [
+        #     int(os.path.splitext(os.path.basename(img))[0].split('_')[1])
+        #     for img in existing_images
+        # ]
+        # return max(existing_numbers) + 1
+
+        if not os.path.exists(folder):
+            return 0
+        images = glob.glob(os.path.join(folder, "img_*.jpg"))
+
+        if not images:
+            return 0
+        
+        numbers = []
+
+        for image in images:
+            filename = os.path.basename(image)
+            number = filename.replace("img_", "").replace(".jpg", "")
+
+            if number.isdigit():
+                numbers.append(int(number))
+
+        if not numbers:
+            return 0
+        return max(numbers) + 1
 
     def capture_image(self, frame, folder='dataset'):
         """
