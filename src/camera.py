@@ -19,6 +19,7 @@ Created:
 
 from config import FRAME_HEIGHT, FRAME_WIDTH, WINDOW_NAME, FPS, CAMERA_INDEX
 import cv2
+import os
 
 
 class Camera:
@@ -29,6 +30,8 @@ class Camera:
         self.width = FRAME_WIDTH
         self.height = FRAME_HEIGHT
         self.window_name = WINDOW_NAME
+        self.image_counter = 0  # Counter for naming captured images
+
 
     def open_camera(self) -> bool:
         """
@@ -81,16 +84,26 @@ class Camera:
             #if cv2.waitKey(1) == 27:  # Press 'Esc' to exit
                 #self.close_camera()
 
-    def capture_image(self, frame, filename='capture.png'):
+    def capture_image(self, frame, folder='dataset'):
         """
-        Captures the provided frame and saves it to the specified filename.
+        Saves the current frame with an automatic sequential filename.
         Args:
             frame (numpy.ndarray): The frame to save.
-            filename (str): The name of the file where the image will be saved.
+            folder (str): The name of the folder where the image will be saved.
         """
         if frame is None:
             return False
-        return cv2.imwrite(filename, frame)
+        os.makedirs(folder, exist_ok=True)
+        filename = os.path.join(
+            folder,
+            f"img_{self.image_counter:04}.jpg"
+        )
+        success = cv2.imwrite(filename, frame)
+
+        if success:
+            print(f"Image saved as {filename}")
+            self.image_counter += 1
+        return success
 
     def change_resolution(self, width, height):
         """

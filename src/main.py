@@ -20,7 +20,7 @@ def main():
         if key == ord('q'):
             break
         elif key == ord('c'):
-            camera.capture_image(frame, "capture.png")
+            camera.capture_image(frame, "dataset")
 
     camera.close_camera()
 
