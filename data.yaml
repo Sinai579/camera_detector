@@ -1,8 +1,7 @@
-path: dataset
+path: camera_detector/data.yaml
 
 train: images/train
 val: images/val
 
 names:
-  0: 'HD70'
-  
+  0: 'L70'
