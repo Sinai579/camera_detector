@@ -1,10 +1,10 @@
 from pathlib import Path
 
 # Carpeta donde están las imágenes
-carpeta = Path(r"C:\Users\Sinai.Cabrera\Documents\VSC\camera_detector\dataset")
+carpeta = Path(r"C:\Users\Sinai.Cabrera\Documents\VSC\camera_detector\dataset\L70")
 
 # Número inicial
-inicio = 151
+inicio = 290
 
 # Obtener todos los archivos y ordenarlos por nombre
 archivos = sorted([f for f in carpeta.iterdir() if f.is_file()])

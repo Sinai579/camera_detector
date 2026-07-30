@@ -1,6 +1,6 @@
 from pathlib import Path
 
-labels_dir = Path("dataset/labels")
+labels_dir = Path("dataset_L70/labels/val")
 
 for txt_file in labels_dir.rglob("*.txt"):
     with open(txt_file, "r") as f:
@@ -11,7 +11,7 @@ for txt_file in labels_dir.rglob("*.txt"):
     for line in lines:
         parts = line.strip().split()
 
-        if parts and parts[0] == "15":
+        if parts and parts[0] == "1":
             parts[0] = "0"
 
         new_lines.append(" ".join(parts))
