@@ -11,8 +11,8 @@ for txt_file in labels_dir.rglob("*.txt"):
     for line in lines:
         parts = line.strip().split()
 
-        if parts and parts[0] == "1":
-            parts[0] = "0"
+        if parts and parts[0] == "0":
+            parts[0] = "1"
 
         new_lines.append(" ".join(parts))
 

@@ -2,7 +2,7 @@ from ultralytics import YOLO
 import cv2
 
 # Cargar el modelo
-model = YOLO("runs/detect/runs/L70_test-4/weights/best.pt")
+model = YOLO("runs/detect/runs/HD-L70/weights/best.pt")
 
 # Abrir la cámara
 cap = cv2.VideoCapture(1)
