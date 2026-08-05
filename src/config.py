@@ -10,4 +10,5 @@ WINDOW_NAME = "Camera Detector"
 #Dataset config
 IMAGE_PREFIX = "capture"
 IMAGE_FORMAT = ".jpg"
-CAPTURE_FOLDER = "../HD70"
+
+CAPTURE_FOLDER = "../Husky"
